@@ -1,4 +1,5 @@
 # Toggle Switch: Dark and Light Mode Transition
+[![Demo](https://i.stack.imgur.com/Vp2cE.png)](https://twitter.com/i/status/1694660110935543828)
 
 This project features a simple toggle switch that allows users to switch the theme of a web page between dark and light modes.
 

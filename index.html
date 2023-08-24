@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle switch - Doğukan Sahil</title>
+    <style>
+    	body {
+        background-color: white;
+    	}
+    
+    	.dark-mode {
+        background-color: black;
+    	}
+    	
+        .switch {
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            z-index: 1000;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #2C3E50, #34495E, #1B2631);
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "☀️";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            text-align: center;
+            line-height: 26px;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background: linear-gradient(45deg, #B0E0E6, #5DADE2, #3498DB);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+            content: "🌙";
+        }
+
+        .slider.round {
+            border-radius: 39px;
+        }
+
+        .slider.round:before {
+            border-radius: 39px;
+        }
+
+        @media (max-width: 768px) {
+            .switch {
+                display: none;
+            }
+        }
+
+        input#toggle-theme.dark + .slider:before {
+            content: "🌙";
+        }
+
+        input#toggle-theme:not(.dark) + .slider:before {
+            content: "☀️";
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <label class="switch" id="toggle-theme-label">
+        <input type="checkbox" id="toggle-theme">
+        <span class="slider round"></span>
+    </label>
+
+    <script>
+        function updateButton() {
+            if (body.classList.contains('dark-mode')) {
+                toggleButton.classList.add('dark');
+            } else {
+                toggleButton.classList.remove('dark');
+            }
+        }
+        const toggleButton = document.getElementById('toggle-theme');
+        const body = document.body;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const cachedMode = localStorage.getItem('themeMode');
+            if (cachedMode === 'dark') {
+                body.classList.add('dark-mode');
+                toggleButton.checked = true;
+                toggleButton.classList.add('dark');
+            } else {
+                toggleButton.checked = false;
+            }
+        });
+
+        toggleButton.addEventListener('change', function () {
+            body.classList.toggle('dark-mode');
+
+            const currentMode = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('themeMode', currentMode);
+
+            updateButton();
+        });
+
+    </script>
+
+</body>
+
+</html>

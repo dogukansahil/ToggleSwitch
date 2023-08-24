@@ -15,3 +15,4 @@ You can directly use the code by adding it to your web page. You can determine i
 ## Preview
 
 Upon loading the page, you'll see a toggle switch on the top right corner. You can use this switch to change the theme mode between dark and light.
+CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
